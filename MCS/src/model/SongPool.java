@@ -1,5 +1,6 @@
+package model;
 public class SongPool{
-	private final int SONG_MAXIMUM = 30;
+	private final static int SONG_MAXIMUM = 30;
 	
 	public Song[] songs;
 	
@@ -7,11 +8,11 @@ public class SongPool{
 		songs = new Song[SONG_MAXIMUM];
 	}
 	
-	public boolean findSong(String title, String artist, int duration){
+	public boolean findSong(String title, String artist){
 		boolean finded = false;
 		for(int i = 0; i<SONG_MAXIMUM && !finded; i++){
 			if(songs[i]!=null){
-				if(songs[i].getTitle().equalsIgnoreCase(title) && songs[i].getArtist().equalsIgnoreCase(artist) && songs[i].getDuration()==duration){
+				if(songs[i].getTitle().equalsIgnoreCase(title) && songs[i].getArtist().equalsIgnoreCase(artist)){
 					finded = true;
 				}
 			}
@@ -19,9 +20,13 @@ public class SongPool{
 		return finded;
 	}
 	
-	public boolean addSong(String title, String artist, String releaseDate, int duration, String gender){
+	public int getSongMaximum(){
+		return SONG_MAXIMUM;
+	}
+	
+	public boolean addSong(String title, String artist, String releaseDate, int duration, int gender){
 		Song newSong = new Song(title, artist, releaseDate, duration, gender);
-		boolean added = findSong(title, artist, duration);
+		boolean added = findSong(title, artist);
 		if(!added){
 			for(int i = 0; i<SONG_MAXIMUM && !added; i++){
 				if(songs[i]!=null){
@@ -31,6 +36,16 @@ public class SongPool{
 			}
 		}
 		return added;
+	}
+	
+	public int quantitySong(){
+		int result = 0;
+		for(int i = 0; i<SONG_MAXIMUM; i++){
+			if(songs[i]!=null){
+				results++;
+			}
+		}
+		return result;
 	}
 	
 	public String showSongs(){
