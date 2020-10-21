@@ -42,14 +42,14 @@ public class SongPool{
 		int result = 0;
 		for(int i = 0; i<SONG_MAXIMUM; i++){
 			if(songs[i]!=null){
-				results++;
+				result++;
 			}
 		}
 		return result;
 	}
 	
 	public String showSongs(){
-		String contents;
+		String contents = "";
 		for(int i = 0; i<SONG_MAXIMUM; i++){
 			if(songs[i]!=null){
 				contents += "\n************** Song **************\n";

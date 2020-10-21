@@ -17,7 +17,7 @@ public class User{
 	private SongPool songPool;
 	public User(String nickName, String password, int age){
 		this.nickName = nickName;
-		this.password = password
+		this.password = password;
 		this.age = age;
 		category = NEWBIE;
 		songPool = new SongPool();
@@ -43,7 +43,7 @@ public class User{
 		return age;
 	}
 	
-	public int increaseAge(){
+	public void increaseAge(){
 		age++;
 	}
 	

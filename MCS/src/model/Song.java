@@ -12,7 +12,7 @@ public class Song{
 		this.artist = artist;
 		this.releaseDate = releaseDate;
 		this.duration = duration;
-		this.genre = enumGenre(genreNum);
+		enumGenre(genreNum);
 	}
 	
 	public String getTitle(){

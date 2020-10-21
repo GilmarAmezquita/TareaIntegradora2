@@ -1,5 +1,6 @@
 package ui;
 import model.*;
+import java.util.Scanner;
 public class Menu{
 	private final static int USERS_MAXIMUM = 10;
 	
@@ -24,17 +25,19 @@ public class Menu{
 	}
 	
 	public int readOption(){
-		System.out.print("Opcion");
+		System.out.print("Opcion: ");
 		int choice = sc.nextInt();
 		sc.nextLine();
 		return choice;
 	}
 	
-	public boolean findUser(String nickname){
+	public boolean findUser(String nickName){
 		boolean finded = false;
 		for(int i = 0; i<USERS_MAXIMUM && !finded; i++){
-			if(users[i].getNicknName.equals(nickname)){
-				finded = true;
+			if(users[i]!=null){
+				if(users[i].getNickName().equals(nickName)){
+					finded = true;
+				}
 			}
 		}
 		return finded;
@@ -60,7 +63,7 @@ public class Menu{
 	public String registerUser(){
 		System.out.println("Escribe el nombre de usuario:");
 		String nickName = sc.nextLine();
-		boolean nickNameRegister = findUser(nickname);
+		boolean nickNameRegister = findUser(nickName);
 		if(!nickNameRegister){
 			System.out.println("Ingrese su edad: ");
 			int age = sc.nextInt();
@@ -71,6 +74,13 @@ public class Menu{
 			String confirmPassword = sc.nextLine();
 			if(password.equals(confirmPassword)){
 				User newUser = new User(nickName, password, age);
+				boolean added = false;
+				for(int i = 0; i<USERS_MAXIMUM && !added; i++){
+					if(users[i]==null){
+						users[i] = newUser;
+						added = true;
+					}
+				}
 				return "Usuario registrado correctamente";
 			}else return "Las contraseñas no coinciden";
 		}else return "Ya existe un usuario con ese nombre";
@@ -96,6 +106,6 @@ public class Menu{
 			showMenu();
 			choice = readOption();
 			doOperation(choice);
-		}while()
+		}while(choice!=EXIT);
 	}
 }
