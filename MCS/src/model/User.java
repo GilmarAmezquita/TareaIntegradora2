@@ -12,15 +12,15 @@ public class User{
 	private String nickName;
 	private String password;
 	private int age;
+	private int songsAdded;
 	private String category;
 	
-	private SongPool songPool;
 	public User(String nickName, String password, int age){
 		this.nickName = nickName;
 		this.password = password;
 		this.age = age;
+		songsAdded = 0;
 		category = NEWBIE;
-		songPool = new SongPool();
 	}
 	
 	public String getNickName(){
@@ -35,10 +35,6 @@ public class User{
 		return password;
 	}
 	
-	public void setPassword(String password){
-		this.password = password;
-	}
-	
 	public int getAge(){
 		return age;
 	}
@@ -47,25 +43,22 @@ public class User{
 		age++;
 	}
 	
+	public void increaseSongsAdded(){
+		songsAdded++;
+	}
+	
 	public String getCategory(){
 		return category;
 	}
 	
-	public boolean addSongToPool(String title, String artist, String releaseDate, int duration, int gender){
-		boolean added = songPool.addSong(title, artist, releaseDate, duration, gender);
-		calculateCategory();
-		return added;
-	}
-	
 	public void calculateCategory(){
-		int quantity = songPool.quantitySong();
-		if(quantity<NEWBIE_MAXIMUM){
+		if(songsAdded<NEWBIE_MAXIMUM){
 			category = NEWBIE;
-		}else if(quantity<LITTLE_CONTRIBUTOR_MAXIMUM){
+		}else if(songsAdded<LITTLE_CONTRIBUTOR_MAXIMUM){
 			category = LITTLE_CONTRIBUTOR;
-		}else if(quantity<MILD_CONTRIBUTOR_MAXIMUM){
+		}else if(songsAdded<MILD_CONTRIBUTOR_MAXIMUM){
 			category = MILD_CONTRIBUTOR;
-		}else if(quantity>=MILD_CONTRIBUTOR_MAXIMUM){
+		}else if(songsAdded>=MILD_CONTRIBUTOR_MAXIMUM){
 			category = STAR_CONTRIBUTOR;
 		}
 	}
