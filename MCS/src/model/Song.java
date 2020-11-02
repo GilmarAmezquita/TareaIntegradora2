@@ -6,7 +6,6 @@ public class Song{
 	private int duration;
 	
 	private Genre genre;
-	
 	public Song(String title, String artist, String releaseDate, int duration, int genreNum){
 		this.title = title;
 		this.artist = artist;
@@ -14,7 +13,12 @@ public class Song{
 		this.duration = duration;
 		enumGenre(genreNum);
 	}
-	
+	/**
+	* Get the title of the song
+	* <b>pre: </b> <br>
+	* <b>post: </b> 
+	* @return title
+	*/
 	public String getTitle(){
 		return title;
 	}
@@ -34,7 +38,13 @@ public class Song{
 	public Genre getGenre(){
 		return genre;
 	}
-	
+	/**
+	* Calculate the genre of the song.
+	* <b>pre: </b> <br>
+	* <b>post: </b> 
+	* @param genreNum
+	* @return title
+	*/
 	public void enumGenre(int genreNum){
 	switch(genreNum){
 		case 0:
@@ -54,9 +64,6 @@ public class Song{
 			break;
 		case 5:
 			this.genre = Genre.Metal;
-			break;
-		case 6:
-			this.genre = Genre.Desconocido;
 			break;
 		}
 	}
