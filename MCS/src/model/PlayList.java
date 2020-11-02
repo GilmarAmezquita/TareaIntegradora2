@@ -1,11 +1,11 @@
 package model;
 import java.util.ArrayList;
 public class PlayList{
-	private final static int MAX_PLAYLISTS = 20;
 	private final static int MAX_GENRES = 6;
 	
 	private String name;
 	private int duration;
+	private int songsInPlaylist;
 	
 	private ArrayList<Song> songs;
 	private Genre[] genres;
@@ -13,8 +13,9 @@ public class PlayList{
 	public PlayList(String name){
 		this.name = name;
 		duration = 0;
-		songs = new Song[MAX_PLAYLISTS];
+		songsInPlaylist = 0;
 		genres = new Genre[MAX_GENRES];
+		songs = new ArrayList<Song>();
 	}
 	
 	public String getName(){
@@ -29,16 +30,19 @@ public class PlayList{
 		return duration;
 	}
 	
-	public boolean findSongInPool(String title, String artist, SongPool songPool){
-		boolean finded = songPool.findSong(title, artist);
-		return finded;
+	public int getSongsQuantity(){
+		return songsInPlaylist;
 	}
 	
-	public boolean findSongInPlayList(String title, String artist){
-		boolean findedInPlayList = false;
-		for(int i = 0; i<songs.size && !findedInPlayList; i++){
-			if(songs[i].getTitle().equalsIgnoreCase(title) && songs[i].getArtist().equalsIgnoreCase(artist)){
-				findedInPlayList = true;
+	public void increaseSongsInPlaylist(){
+		songsInPlaylist++;
+	}
+	
+	public boolean findSong(String title, String artist){
+		boolean finded = false;
+		for(int i = 0; i<songsInPlaylist && !finded; i++){
+			if(songs.get(i).getTitle().equalsIgnoreCase(title) && songs.get(i).getArtist().equalsIgnoreCase(artist)){
+				finded = true;
 			}
 		}
 		return finded;
@@ -46,38 +50,66 @@ public class PlayList{
 	
 	public void calculateDurationPlayList(){
 		int duration = 0;
-		for(int i = 0; i<songs.size; i++){
-			duration += songs.get(i).getDuration;
+		for(int i = 0; i<songsInPlaylist; i++){
+			duration += songs.get(i).getDuration();
 		}
 		this.duration = duration;
 	}
-	/*
-	public Genre[] calculateGenresPlayList(){
-		for(int i = 0; i<songs.size; i++){
-			for(int j = 0; i<songs.size; j++)
-			if(songs.get(i).getGenre )
-		}
-	}
-	*/
-	public boolean addSong(String title, String artist, SongPool songPool){
-		boolean findedPlayList = findSongInPlayList(title, artist);
-		boolean findedSongPool = findSongInPool(title, artist, songPool);
+
+	public void calculateGenres(Song song){
+		boolean already = false;
 		boolean added = false;
-		if(!findedSongInPlayList && findedSongPool){
-			boolean index = false; 
-			for(int i = 0; i<songPool.getSongMaximum() && !index; i++){
-				if(songPool.songs[i].getTitle().equalsIgnoreCase() && songPool.songs[i].getArtist().equalsIgnoreCase(artist)){
-					index = true;
+		for(int i = 0; i<MAX_GENRES && !already; i++){
+			if(genres[i]!=null){
+				if(genres[i] == song.getGenre()){
+					already = true;
 				}
 			}
-			for(int j = 0; j<MAX_PLAYLISTS && !added; j++){
-				if(songs[j]==null){
-					songs[j] = songPool.songs[i-1];
+		}
+		if(!already){
+			for(int i = 0; i<MAX_GENRES && !added; i++){
+				if(genres[i]==null){
+					genres[i] = song.getGenre();
 					added = true;
-					calculateDurationPlayList();
+				}
+			}
+		}
+	}
+	
+	public boolean addSong(String title, String artist, Song[] songsPool){
+		boolean findedInPlaylist = findSong(title, artist);
+		boolean added = false;
+		if(!findedInPlaylist){
+			for(int i = 0; i<songsPool.length && !added; i++){
+				if(songsPool[i]!=null){
+					if(songsPool[i].getTitle().equalsIgnoreCase(title) && songsPool[i].getArtist().equalsIgnoreCase(artist)){
+						songs.add(songsPool[i]);
+						increaseSongsInPlaylist();
+						calculateDurationPlayList();
+						calculateGenres(songsPool[i]);
+						added = true;
+					}
 				}
 			}
 		}
 		return added;
+	}
+	//CLASE ABSTRACTRA
+	public String getInfo(){
+		String contents = "**************  Playlist **************\n";
+		contents += "** Title: "+getName()+"\n";
+		int seconds = this.duration;
+		int minutes = (seconds/60);
+		seconds -= (minutes*60);
+		int hours = (minutes/60);
+		minutes -= (hours*60);
+		contents += "** Duraion: "+hours+":"+minutes+":"+seconds+"\n";
+		contents += "** Genre:";
+		for(int i = 0; i<MAX_GENRES; i++){
+			if(genres[i]!=null){
+				contents += " "+genres[i];
+			}
+		}
+		return contents;
 	}
 }
