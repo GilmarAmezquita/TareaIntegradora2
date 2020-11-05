@@ -1,15 +1,20 @@
 package model;
 import java.util.ArrayList;
-public class PlayList{
+public abstract class PlayList{
 	private final static int MAX_GENRES = 6;
 	
 	private String name;
 	private int duration;
 	private int songsInPlaylist;
-	
+
 	private ArrayList<Song> songs;
 	private Genre[] genres;
-	
+	/**
+	* Constructor method for the playlist
+	* <b> pre: </b> <br>
+	* <b> post: </b> Initializes a playlist without songs
+	* @param name the name of the playlist
+	*/
 	public PlayList(String name){
 		this.name = name;
 		duration = 0;
@@ -17,27 +22,60 @@ public class PlayList{
 		genres = new Genre[MAX_GENRES];
 		songs = new ArrayList<Song>();
 	}
-	
+	/**
+	* Get the name of the playlist
+	* <b>pre: </b> <br>
+	* <b>post: </b> The name of each playlist is unique 
+	* @return name
+	*/
 	public String getName(){
 		return name;
 	} 
-	
+	/**
+	* Change the name of a playlist
+	* <b>pre: </b> The new name must be unique<br>
+	* <b>post: </b> 
+	* @param name New name of the playlist
+	*/
 	public void setName(String name){
 		this.name = name;
 	}
-	
+	/**
+	* Get the duration of the playlist
+	* <b>pre: </b> <br>
+	* <b>post: </b> The duration of the playlist is in seconds 
+	* @return duration
+	*/
 	public int getDuration(){
 		return duration;
 	}
-	
+	/**
+	* Number of songs in the playlist
+	* <b>pre: </b> <br>
+	* <b>post: </b> The number of songs will not be greater than the songs in the pool
+	* @return songsInPlaylist
+	*/
 	public int getSongsQuantity(){
 		return songsInPlaylist;
 	}
-	
+	/**
+	* Increase the number of songs in the playlist
+	* <b>pre: </b> <br>
+	* <b>post: </b> The number of songs will not be greater than the songs in the pool
+	*/
 	public void increaseSongsInPlaylist(){
 		songsInPlaylist++;
 	}
-	
+	/**
+	* Search a song in the playlist
+	* <b>pre: </b> <br>
+	* <b>post: </b>	
+	*			1. Returns false if the song isn't in the playlist<br> 
+	*			2. Returns true if the song is in the playlist
+	* @param title Title of the song that to be searched
+	* @param artist Artist of the song
+	* @return finded
+	*/
 	public boolean findSong(String title, String artist){
 		boolean finded = false;
 		for(int i = 0; i<songsInPlaylist && !finded; i++){
@@ -47,15 +85,24 @@ public class PlayList{
 		}
 		return finded;
 	}
-	
-	public void calculateDurationPlayList(){
+	/**
+	* Calculate the total duration of the song
+	* <b>pre: </b> <br>
+	* <b>post: </b> The total duration is in seconds
+	*/
+	public void calculateDurationPlaylist(){
 		int duration = 0;
 		for(int i = 0; i<songsInPlaylist; i++){
 			duration += songs.get(i).getDuration();
 		}
 		this.duration = duration;
 	}
-
+	/**
+	* Check the genres of the playlist and add the missing ones from the songs
+	* <b>pre: </b> <br>
+	* <b>post: </b> The genres are not repeated
+	* @param song Is a song of the playlist
+	*/
 	public void calculateGenres(Song song){
 		boolean already = false;
 		boolean added = false;
@@ -75,41 +122,40 @@ public class PlayList{
 			}
 		}
 	}
-	
-	public boolean addSong(String title, String artist, Song[] songsPool){
+	/**
+	* Add a song to the playlist
+	* <b>pre: </b> <br>
+	* <b>post: </b>
+	*			1. Returns false if the song is already in the playlist <br> 
+	*			2. Returns true if the song could be added to the playlist
+	* @param title Title of the song to be added
+	* @param artist Artist of the song to be added
+	* @param song Is the song that should be added to the playlist
+	* @return added
+	*/
+	public boolean addSong(String title, String artist, Song song){
 		boolean findedInPlaylist = findSong(title, artist);
 		boolean added = false;
 		if(!findedInPlaylist){
-			for(int i = 0; i<songsPool.length && !added; i++){
-				if(songsPool[i]!=null){
-					if(songsPool[i].getTitle().equalsIgnoreCase(title) && songsPool[i].getArtist().equalsIgnoreCase(artist)){
-						songs.add(songsPool[i]);
-						increaseSongsInPlaylist();
-						calculateDurationPlayList();
-						calculateGenres(songsPool[i]);
-						added = true;
-					}
-				}
-			}
+			songs.add(song);
+			increaseSongsInPlaylist();
+			calculateDurationPlaylist();
+			calculateGenres(song);
+			added = true;
 		}
 		return added;
 	}
-	//CLASE ABSTRACTRA
-	public String getInfo(){
-		String contents = "**************  Playlist **************\n";
-		contents += "** Title: "+getName()+"\n";
-		int seconds = this.duration;
-		int minutes = (seconds/60);
-		seconds -= (minutes*60);
-		int hours = (minutes/60);
-		minutes -= (hours*60);
-		contents += "** Duraion: "+hours+":"+minutes+":"+seconds+"\n";
-		contents += "** Genre:";
-		for(int i = 0; i<MAX_GENRES; i++){
-			if(genres[i]!=null){
-				contents += " "+genres[i];
-			}
-		}
-		return contents;
+	/**
+	* Get the genres of the playlist
+	* <b> pre: </b> <br>
+	* <b> post: </b> Return the list of genres of the playlist, includes the null positions
+	* @return genres
+	*/
+	public Genre[] getGenres(){
+		return genres;
 	}
+	/**
+	* Abstract method to get the info of the playlist
+	*/
+	public abstract String getInfo();
 }
