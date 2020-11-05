@@ -6,6 +6,16 @@ public class Song{
 	private int duration;
 	
 	private Genre genre;
+	/**
+	* Constructor method for each song
+	* <b> pre: </b> <br>
+	* <b> post: </b> Initializes a song with all its information
+	* @param title The title of the song
+	* @param artist The name of the artist
+	* @param releaseDate Date the song was released
+	* @param duration Duration of the song in seconds
+	* @param genreNum Option that define the genre of the song
+	*/
 	public Song(String title, String artist, String releaseDate, int duration, int genreNum){
 		this.title = title;
 		this.artist = artist;
@@ -22,28 +32,47 @@ public class Song{
 	public String getTitle(){
 		return title;
 	}
-	
+	/**
+	* Get the artist name
+	* <b>pre: </b> <br>
+	* <b>post: </b> 
+	* @return artist
+	*/
 	public String getArtist(){
 		return artist;
 	}
-		
+	/**
+	* Get the release date of the song
+	* <b>pre: </b> <br>
+	* <b>post: </b> 
+	* @return releaseDate
+	*/
 	public String getReleaseDate(){
 		return releaseDate;
 	}
-	
+	/**
+	* Get the duration of the song in seconds
+	* <b>pre: </b> <br>
+	* <b>post: </b> 
+	* @return duration
+	*/
 	public int getDuration(){
 		return duration;
 	}
-	
+	/**
+	* Get the genre of the song
+	* <b>pre: </b> <br>
+	* <b>post: </b> 
+	* @return genre
+	*/
 	public Genre getGenre(){
 		return genre;
 	}
 	/**
 	* Calculate the genre of the song.
-	* <b>pre: </b> <br>
+	* <b>pre: </b> The genreNum must be between 0 and 5 <br>
 	* <b>post: </b> 
-	* @param genreNum
-	* @return title
+	* @param genreNum user input, each integer corresponds to a genre
 	*/
 	public void enumGenre(int genreNum){
 	switch(genreNum){
