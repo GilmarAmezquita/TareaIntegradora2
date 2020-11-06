@@ -105,7 +105,7 @@ public class Song{
 	* @return contents Contains the song information
 	*/
 	public String getSongInfo(){
-		contents = "*************** Song ***************\n";
+		String contents = "*************** Song ***************\n";
 		contents += "**  Title: "+getTitle()+"\n";
 		contents += "**  Artist: "+getArtist()+"\n";
 		int seconds = getDuration();

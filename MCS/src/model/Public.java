@@ -31,7 +31,7 @@ public class Public extends PlayList{
 	*				1. The new qualification must be between 1 and 5 <br>
 	*				2. Each user can only rate a playlist once
 	* <b> post: </b>
-	* @param qualification
+	* @param qualification User qualification
 	*/
 	public void addQualification(double qualification){
 		this.qualificationsUsers.add(qualification);

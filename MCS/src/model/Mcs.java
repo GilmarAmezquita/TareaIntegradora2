@@ -208,7 +208,7 @@ public class Mcs{
 		String contents = "";
 		for(int i = 0; i<SONGS_IN_POOL_MAXIMUM; i++){
 			if(songsInPool[i]!=null){
-				contents += getSongInfo();
+				contents += songsInPool[i].getSongInfo();
 			}
 		}
 		return contents;

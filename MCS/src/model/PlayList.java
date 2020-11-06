@@ -156,6 +156,9 @@ public abstract class PlayList{
 	}
 	/**
 	* Abstract method to get the info of the playlist
+	* <b> pre: </b> <br>
+	* <b> post: </b>
+	* @return String
 	*/
 	public abstract String getInfo();
 }

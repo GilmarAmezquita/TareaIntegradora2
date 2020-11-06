@@ -42,7 +42,7 @@ public class User{
 	* Change the user nickname
 	* <b> pre: </b> The new nickname must be unique and different from the old one <br>
 	* <b> post: </b>
-	* @param nickName
+	* @param nickName New user nickname
 	*/
 	public void setNickName(String nickName){
 		this.nickName = nickName;
