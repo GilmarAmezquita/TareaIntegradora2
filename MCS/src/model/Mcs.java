@@ -116,11 +116,7 @@ public class Mcs{
 		String contents = "";
 		for(int i = 0; i<USERS_MAXIMUM; i++){
 			if(users[i] != null){
-				contents += "****************User****************\n";
-				contents += "**  UserName: "+users[i].getNickName()+"\n";
-				contents += "**  Age: "+users[i].getAge()+"\n";
-				contents += "**  Category: "+users[i].getCategory()+"\n";
-				contents += "************************************\n";
+				contents += users[i].getUserInfo();
 			}
 		}
 		return contents;
@@ -212,17 +208,7 @@ public class Mcs{
 		String contents = "";
 		for(int i = 0; i<SONGS_IN_POOL_MAXIMUM; i++){
 			if(songsInPool[i]!=null){
-				contents += "*************** Song ***************\n";
-				contents += "**  Title: "+songsInPool[i].getTitle()+"\n";
-				contents += "**  Artist: "+songsInPool[i].getArtist()+"\n";
-				int seconds = songsInPool[i].getDuration();
-				int minutes = (int) (seconds/60);
-				seconds -= (minutes*60);
-				int hours = (int) (minutes/60);
-				minutes -= (hours*60);
-				contents += "**  Duration: "+hours+":"+minutes+":"+seconds+"\n";
-				contents += "**  Genero: "+songsInPool[i].getGenre()+"\n";
-				contents += "************************************\n";
+				contents += getSongInfo();
 			}
 		}
 		return contents;
