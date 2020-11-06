@@ -39,7 +39,7 @@ public class User{
 		return nickName;
 	}
 	/**
-	* Change the user's nickname
+	* Change the user nickname
 	* <b> pre: </b> The new nickname must be unique and different from the old one <br>
 	* <b> post: </b>
 	* @param nickName
@@ -66,7 +66,7 @@ public class User{
 		return age;
 	}
 	/**
-	* Increases the user's age by 1
+	* Increases the user age by 1
 	* <b> pre: </b> <br>
 	* <b> post: </b>
 	*/
