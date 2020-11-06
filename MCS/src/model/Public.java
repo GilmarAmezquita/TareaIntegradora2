@@ -6,7 +6,7 @@ public class Public extends PlayList{
 	private double qualification;
 	/**
 	* Constructor method of the public playlists
-	* <b> pre: </b> <br>
+	* <b> pre: </b> The playlist name must be unique <br>
 	* <b> post: </b> Initializes a playlist without songs
 	* @param name The name of the playlist
 	*/

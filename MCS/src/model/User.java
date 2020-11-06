@@ -14,7 +14,14 @@ public class User{
 	private int age;
 	private int songsAdded;
 	private String category;
-	
+	/**
+	* Constructor method for the users
+	* <b> pre: </b> The nickname must be unique for user <br>
+	* <b> post: </b> Initilizes a user with all his information
+	* @param nickName Name of the user
+	* @param password Password of the user
+	* @param age Age of the user
+	*/
 	public User(String nickName, String password, int age){
 		this.nickName = nickName;
 		this.password = password;
@@ -22,35 +29,76 @@ public class User{
 		songsAdded = 0;
 		category = NEWBIE;
 	}
-	
+	/**
+	* Get the user's nickname
+	* <b> pre: </b> <br>
+	* <b> post: </b> 
+	* @return nickName
+	*/
 	public String getNickName(){
 		return nickName;
 	}
-	
+	/**
+	* Change the user's nickname
+	* <b> pre: </b> The new nickname must be unique and different from the old one <br>
+	* <b> post: </b>
+	* @param nickName
+	*/
 	public void setNickName(String nickName){
 		this.nickName = nickName;
 	}
-	
+	/**
+	* Get the user's password
+	* <b> pre: </b> <br>
+	* <b> post: </b>
+	* @return password
+	*/
 	public String getPassword(){
 		return password;
 	}
-	
+	/**
+	* Get the user¿s age
+	* <b> pre: </b> <br>
+	* <b> post: </b>
+	* @return age
+	*/
 	public int getAge(){
 		return age;
 	}
-	
+	/**
+	* Increases the user's age by 1
+	* <b> pre: </b> <br>
+	* <b> post: </b>
+	*/
 	public void increaseAge(){
 		age++;
 	}
-	
+	/**
+	* Increases the songs the user has added by 1
+	* <b> pre: </b> <br>
+	* <b> post: </b>
+	*/
 	public void increaseSongsAdded(){
 		songsAdded++;
 	}
-	
+	/**
+	* Get the user's category
+	* <b> pre: </b> <br>
+	* <b> post: </b>
+	*				1. Returns Newbie if the user has added less than 3 songs <br>
+	*				2. Returns Little contributor if the user has added between 3 and 9 songs <br>
+	*				3. Returns Mild contributor if the user has added between 10 and 29 songs <br>
+	*				4. Returns Star contributor if the user has added 30 songs
+	* @return category
+	*/
 	public String getCategory(){
 		return category;
 	}
-	
+	/**
+	* Calculate the user's category
+	* <b> pre: </b> <br>
+	* <b> post: </b>
+	*/
 	public void calculateCategory(){
 		if(songsAdded<NEWBIE_MAXIMUM){
 			category = NEWBIE;

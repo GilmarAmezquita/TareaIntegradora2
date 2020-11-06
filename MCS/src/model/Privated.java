@@ -3,7 +3,7 @@ public class Privated extends PlayList{
 	private User userOwner;
 	/**
 	* Constructor method of the private playlists
-	* <b> pre: </b> <br>
+	* <b> pre: </b> The playlist name must be unique <br>
 	* <b> post: </b> Initializes a playlist without songs
 	* @param user Is the user who can edit the playlist
 	* @param name Is the name of the playlist

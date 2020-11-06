@@ -5,7 +5,7 @@ public class Restricted extends PlayList{
 	private User[] allowedUsers;
 	/**
 	* Constructor method of the restridted playlists
-	* <b> pre: </b> <br>
+	* <b> pre: </b> The playlist name must be unique <br>
 	* <b> post: </b> Initializes a playlist without songs
 	* @param principalUser Is the creator of the playlist and the first who can edit the playlist
 	* @param name Is the name of the playlist

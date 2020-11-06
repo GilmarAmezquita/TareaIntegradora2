@@ -8,7 +8,9 @@ public class Song{
 	private Genre genre;
 	/**
 	* Constructor method for each song
-	* <b> pre: </b> <br>
+	* <b> pre: </b> 
+	*			1. The name of the artist must be unique <br>
+	*			2. The title of the song must be unique for artist
 	* <b> post: </b> Initializes a song with all its information
 	* @param title The title of the song
 	* @param artist The name of the artist

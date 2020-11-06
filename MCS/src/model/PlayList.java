@@ -11,7 +11,7 @@ public abstract class PlayList{
 	private Genre[] genres;
 	/**
 	* Constructor method for the playlist
-	* <b> pre: </b> <br>
+	* <b> pre: </b> The playlist name must be unique<br>
 	* <b> post: </b> Initializes a playlist without songs
 	* @param name the name of the playlist
 	*/
@@ -148,7 +148,7 @@ public abstract class PlayList{
 	/**
 	* Get the genres of the playlist
 	* <b> pre: </b> <br>
-	* <b> post: </b> Return the list of genres of the playlist, includes the null positions
+	* <b> post: </b> Return the genres list of the playlist, includes the null positions
 	* @return genres
 	*/
 	public Genre[] getGenres(){
