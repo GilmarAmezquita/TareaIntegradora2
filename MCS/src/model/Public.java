@@ -27,7 +27,9 @@ public class Public extends PlayList{
 	}
 	/**
 	* Add a qualification of an user to the arraylist of qualifications
-	* <b> pre: </b> The new qualification must be between 1 and 5 <br>
+	* <b> pre: </b> 
+	*				1. The new qualification must be between 1 and 5 <br>
+	*				2. Each user can only rate a playlist once
 	* <b> post: </b>
 	* @param qualification
 	*/
