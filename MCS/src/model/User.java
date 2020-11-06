@@ -110,4 +110,18 @@ public class User{
 			category = STAR_CONTRIBUTOR;
 		}
 	}
+	/**
+	* Get the user information
+	* <b> pre: </b> <br>
+	* <b> post: </b>
+	* @return contents Contains the user information
+	*/
+	public String getUserInfo(){
+		String contents = "****************User****************\n";
+		contents += "**  UserName: "+getNickName()+"\n";
+		contents += "**  Age: "+getAge()+"\n";
+		contents += "**  Category: "+getCategory()+"\n";
+		contents += "************************************\n";
+		return contents;
+	}
 }
