@@ -98,4 +98,24 @@ public class Song{
 			break;
 		}
 	}
+	/**
+	* Get the song information
+	* <b> pre: </b> <br>
+	* <b> post: </b>
+	* @return contents Contains the song information
+	*/
+	public String getSongInfo(){
+		contents = "*************** Song ***************\n";
+		contents += "**  Title: "+getTitle()+"\n";
+		contents += "**  Artist: "+getArtist()+"\n";
+		int seconds = getDuration();
+		int minutes = (int) (seconds/60);
+		seconds -= (minutes*60);
+		int hours = (int) (minutes/60);
+		minutes -= (hours*60);
+		contents += "**  Duration: "+hours+":"+minutes+":"+seconds+"\n";
+		contents += "**  Genero: "+getGenre()+"\n";
+		contents += "************************************\n";		
+		return contents;
+	}
 }
