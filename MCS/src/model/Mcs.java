@@ -5,7 +5,6 @@ public class Mcs{
 	private final static int PLAYLISTS_MAXIMUM = 20;
 	
 	private User[] users;
-	private int playlistQuantity;
 	private PlayList[] playlists;
 	private Song[] songsInPool;
 	/**
@@ -15,26 +14,8 @@ public class Mcs{
 	*/
 	public Mcs(){
 		users = new User[USERS_MAXIMUM];
-		playlistQuantity = 0;
 		playlists = new PlayList[PLAYLISTS_MAXIMUM];
 		songsInPool = new Song[SONGS_IN_POOL_MAXIMUM];
-	}
-	/**
-	* Get the quantity of playlist
-	* <b> pre: </b> <br>
-	* <b> post: </b>
-	* @return playlistQuantity
-	*/
-	public int getPlaylistQuantity(){
-		return playlistQuantity;
-	}
-	/**
-	* Increase the quantity of playlist by 1
-	* <b> pre: </b> <br>
-	* <b> post: </b>
-	*/
-	public void increasePlaylistQuantity(){
-		playlistQuantity++;
 	}
 	/**
 	* Look for a user in the users array with the nickName
